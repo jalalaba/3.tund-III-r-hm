@@ -40,12 +40,11 @@
 		}	
 	}
 ?>
-<html>
-<head>
-	<title>Login Page</title>
-</head>
-
-<body>
+<?php
+	$page_title = "Login" ;
+	$page_file_name = "login.php";
+?>
+<?php require_once("../header.php");?>
 	<h2>Log in</h2>
 	
 		<form action="login.php" method="post">
@@ -69,7 +68,4 @@
 			<input type="submit" value="Submit"> <br><br>
 		</form>	
 	<h2>Minu mvp idee. Lehekülg kus saab hmm...ma ei tea. Kasutajad saavad üles laadida oma joonistusi ja neid müüa. </h2>
-</body>
-
-
-</html>
+<?php require_once("../footer.php");?>
