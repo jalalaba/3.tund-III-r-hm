@@ -1,8 +1,8 @@
 <?php
 
 	// LOGIN.PHP
-	$email_error = $passw_error = $fname_error = $lname_error = $email2_error = $passw2_error ="";
-	$email = $passw = $fname = $lname ="";
+	$email_error = $passw_error = $fname_error = $lname_error = $create_email_error = $create_passw_error ="";
+	$email = $passw = $fname = $lname = $create_email =$create_passw = "";
 	//muutujad ab väärtuste jaoks
 	$name="";
 	//echo $_POST["email"];
@@ -13,6 +13,8 @@
 		//kontrollin et e-post ei ole tühi
 			if (empty($_POST["email"])){
 			$email_error = "see väli on kohustulik";	
+			} else {
+				$email=test_input($_POST["email"]);
 			}
 			//kontrollin et parool ei ole tühi
 			if (empty($_POST["password"])){
@@ -22,6 +24,8 @@
 				//kui oleme siia jõudnud, siis parool pole tühi
 				if(strlen($_POST["password"]) < 8){
 				$passw_error="peab olema vähemalt 8 tähemärki";
+				} else {
+					$passw=test_input($_POST["password"]);
 				}
 			}
 		}
@@ -30,30 +34,37 @@
 		//kontrollin et eesnimi ei ole tühi
 			if (empty($_POST["first name"])){
 			$fname_error = "see väli on kohustulik";
+			}else{
+				$fname=test_input($_POST["first name"]);
 			}
 		//kontrollin et perekonnanimi ei ole tühi
 			if (empty($_POST["last name"])){
 			$lname_error = "see väli on kohustulik";
-			}	
-			if (empty($_POST["email2"])){
-			$email2_error = "see väli on kohustulik";			
-			} else {}
-			if (empty($_POST["password2"])){
-			$passw2_error = "see väli on kohustulik";	
-			} else {			
-				if(strlen($_POST["password"]) < 8){
-				$passw2_error="peab olema vähemalt 8 tähemärki";
+			}else{
+				$lname=test_input($_POST["last name"]);
+			}
+			if (empty($_POST["create email"])){
+			$create_email_error = "see väli on kohustulik";			
+			} else {
+				$create_email=test_input($_POST["create email"]);
 				}
-			} else{
+			if (empty($_POST["create password"])){
+			$create_passw_error = "see väli on kohustulik";	
+			} else {			
+				if(strlen($_POST["create password"]) < 8){
+				$create_passw_error="peab olema vähemalt 8 tähemärki";
+				
+				} else{
+				$create_passw = test_input($_POST['create password']);
 				//kõik korras
 				//test_input eemaldab pahatahlikud osad
-				$name = test_input($_POST['name']);
+				
 			}
 			if($name_error==""){
-				echo "salvestan andmebaasi"
+				echo "salvestan andmebaasi";
 			}
-			
-		}	
+			}
+			}	
 	}
 function test_input($data) {
 	//võtab ära tühikud,enterid jne
@@ -84,8 +95,8 @@ function test_input($data) {
 	<h2>Create user</h2>
 	
 		<form action="login.php" method="post">
-			<input name="email2" type="email" placeholder="E-post" value="<?php echo $email2; ?>" <?php echo $email2_error; ?> ><br><br>
-			<input name="password2" type="password" placeholder="Parool"> <?php echo $passw2_error; ?> <br><br>
+			<input name="create email" type="email" placeholder="E-post" <?php echo $create_email_error; ?> ><br><br>
+			<input name="create password" type="password" placeholder="Parool"> <?php echo $create_passw_error; ?> <br><br>
 			<input name="first name" type="text" placeholder="Eesnimi"> <?php echo $fname_error; ?><br><br>
 			<input name="last name" type="text" placeholder="Perekonnanimi"> <?php echo $lname_error; ?><br><br>
 			Sugu:
