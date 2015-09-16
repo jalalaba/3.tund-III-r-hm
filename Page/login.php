@@ -28,16 +28,18 @@
 					$passw=test_input($_POST["password"]);
 				}
 			}
-		}
-		
-		elseif((isset($_POST["submit"]))){
+			//kontrollin et ei oleks ühtegi errorit
+			if($email_error == "" && $passw_error ==""){
+				
+				echo "kontrollin sisselogimist ".$email." ja parool ";
+			}
+		}elseif(isset($_POST["submit"])){
 		//kontrollin et eesnimi ei ole tühi
 			if (empty($_POST["first name"])){
 			$fname_error = "see väli on kohustulik";
 			}else{
 				$fname=test_input($_POST["first name"]);
 			}
-		//kontrollin et perekonnanimi ei ole tühi
 			if (empty($_POST["last name"])){
 			$lname_error = "see väli on kohustulik";
 			}else{
@@ -47,7 +49,7 @@
 			$create_email_error = "see väli on kohustulik";			
 			} else {
 				$create_email=test_input($_POST["create email"]);
-				}
+			}
 			if (empty($_POST["create password"])){
 			$create_passw_error = "see väli on kohustulik";	
 			} else {			
@@ -55,16 +57,16 @@
 				$create_passw_error="peab olema vähemalt 8 tähemärki";
 				
 				} else{
-				$create_passw = test_input($_POST['create password']);
+				$create_passw = test_input($_POST["create password"]);
 				//kõik korras
 				//test_input eemaldab pahatahlikud osad
-				
+				}	
 			}
-			if($name_error==""){
-				echo "salvestan andmebaasi";
+			if($fname_error=="" && $lname_error=="" && $create_email_error=="" && $create_passw_error==""){
+				echo "salvestan andmebaasi".$fname;
+			
 			}
-			}
-			}	
+		}	
 	}
 function test_input($data) {
 	//võtab ära tühikud,enterid jne
@@ -87,7 +89,7 @@ function test_input($data) {
 	<h2>Log in</h2>
 	
 		<form action="login.php" method="post">
-			<input name="email" type="email" placeholder="E-post"> <?php echo $email_error; ?><br><br>
+			<input name="email" type="email" placeholder="E-post" value="<?php echo $email; ?>"> <?php echo $email_error; ?><br><br>
 			<input name="password" type="password" placeholder="Parool"> <?php echo $passw_error; ?> <br><br>
 			<input name="login" type="submit" value="log in"> <br><br>
 		</form>
@@ -95,10 +97,10 @@ function test_input($data) {
 	<h2>Create user</h2>
 	
 		<form action="login.php" method="post">
-			<input name="create email" type="email" placeholder="E-post" <?php echo $create_email_error; ?> ><br><br>
+			<input name="create email" type="email" placeholder="E-post" value="<?php echo $create_email; ?>"><?php echo $create_email_error; ?><br><br>
 			<input name="create password" type="password" placeholder="Parool"> <?php echo $create_passw_error; ?> <br><br>
-			<input name="first name" type="text" placeholder="Eesnimi"> <?php echo $fname_error; ?><br><br>
-			<input name="last name" type="text" placeholder="Perekonnanimi"> <?php echo $lname_error; ?><br><br>
+			<input name="first name" type="text" placeholder="Eesnimi" value="<?php echo $fname; ?>"> <?php echo $fname_error; ?><br><br>
+			<input name="last name" type="text" placeholder="Perekonnanimi" value="<?php echo $lname; ?>"> <?php echo $lname_error; ?><br><br>
 			Sugu:
 			<input name="sugu" type="radio" value="Naine">Naine
 			<input name="sugu" type="radio" value="Mees">Mees<br><br>
@@ -107,4 +109,5 @@ function test_input($data) {
 			<input name="submit" type="submit" value="Submit"><br><br>
 		</form>	
 	<h2>Minu mvp idee. Lehekülg kus saab hmm...ma ei tea. Kasutajad saavad üles laadida oma joonistusi ja neid müüa. </h2>
+	
 <?php require_once("../footer.php");?>
