@@ -2,7 +2,7 @@
 
 	// LOGIN.PHP
 	$email_error = $passw_error = $fname_error = $lname_error = $create_email_error = $create_passw_error ="";
-	$email = $passw = $fname = $lname = $create_email =$create_passw = "";
+	$email = $passw = $fname = $lname = $create_email = $create_passw = "";
 	//muutujad ab väärtuste jaoks
 	$name="";
 	//echo $_POST["email"];
@@ -29,7 +29,7 @@
 				}
 			}
 			//kontrollin et ei oleks ühtegi errorit
-			if($email_error == "" && $passw_error ==""){
+			if($email_error == "" && $passw_error == ""){
 				
 				echo "kontrollin sisselogimist ".$email." ja parool ";
 			}
@@ -46,7 +46,7 @@
 				$lname=test_input($_POST["last name"]);
 			}
 			if (empty($_POST["create email"])){
-			$create_email_error = "see väli on kohustulik";			
+			$create_email_error = " see väli on kohustulik";			
 			} else {
 				$create_email=test_input($_POST["create email"]);
 			}
@@ -62,7 +62,7 @@
 				//test_input eemaldab pahatahlikud osad
 				}	
 			}
-			if($fname_error=="" && $lname_error=="" && $create_email_error=="" && $create_passw_error==""){
+			if($fname_error == "" && $lname_error == "" && $create_email_error == "" && $create_passw_error == ""){
 				echo "salvestan andmebaasi".$fname;
 			
 			}
@@ -102,10 +102,10 @@ function test_input($data) {
 			<input name="first name" type="text" placeholder="Eesnimi" value="<?php echo $fname; ?>"> <?php echo $fname_error; ?><br><br>
 			<input name="last name" type="text" placeholder="Perekonnanimi" value="<?php echo $lname; ?>"> <?php echo $lname_error; ?><br><br>
 			Sugu:
-			<input name="sugu" type="radio" value="Naine">Naine
-			<input name="sugu" type="radio" value="Mees">Mees<br><br>
-			<input name="vanus" type="number_format" placeholder="Vanus"><br><br>
-			<input name="Linn" type="text" placeholder="Linn"><br><br>
+			<input name="gender_female" type="radio" value="Naine">Naine
+			<input name="gender_male" type="radio" value="Mees">Mees<br><br>
+			<input name="age" type="number_format" placeholder="Vanus"><br><br>
+			<input name="city" type="text" placeholder="Linn"><br><br>
 			<input name="submit" type="submit" value="Submit"><br><br>
 		</form>	
 	<h2>Minu mvp idee. Lehekülg kus saab hmm...ma ei tea. Kasutajad saavad üles laadida oma joonistusi ja neid müüa. </h2>
